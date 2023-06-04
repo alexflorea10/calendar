@@ -1,0 +1,127 @@
+$primaryColor: #ff0303;
+$secondaryColor: #2c3333;
+$backgroundColor: #2e3840;
+$textColor: #cbe4de;
+$secondaryTextColor: #868686;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $backgroundColor;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  color: $textColor;
+  @include flexCenter();
+}
+
+.calendar {
+  width: 600px;
+  height: 750px;
+
+  box-shadow: 0 0 15px 6px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  @include flexColumn();
+}
+
+.upper-part {
+  @include flexCenter();
+  justify-content: space-around;
+  height: 25%;
+  background-color: $primaryColor;
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    color: $textColor;
+  }
+
+  .upper-middle-part {
+    @include flexColumn();
+  }
+
+  .month {
+    font-size: 56px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .date {
+    font-size: 24px;
+    text-align: center;
+    font-weight: 400;
+  }
+}
+
+.down-part {
+  height: 75%;
+  background-color: $secondaryColor;
+  @include flexColumn();
+
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: center;
+    justify-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: $textColor;
+    margin: 20px;
+  }
+  .days {
+    font-size: 24px;
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 0 20px;
+
+    div {
+      @include flexCenter();
+      height: 80px;
+      width: 80px;
+
+      &:hover {
+        border: 3px solid $primaryColor;
+        cursor: pointer;
+      }
+
+      &:active {
+        scale: calc(0.9);
+      }
+    }
+
+    .prev-days,
+    .next-days {
+      color: $secondaryTextColor;
+      font-weight: 400;
+    }
+  }
+}
+
+.current-day {
+  background-color: $primaryColor;
+
+  &:hover {
+    background-color: $primaryColor !important;
+  }
+}
+
+.selected {
+  border: 3px solid $primaryColor;
+}
